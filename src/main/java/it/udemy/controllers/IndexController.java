@@ -1,4 +1,4 @@
-package it.udemy.controller;
+package it.udemy.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 	
-	private static final String SALUTI = "Saluti, sono la tua prima applicazione web creata in SpringBoot 3";
+	private static final String SALUTI = "Saluti, sono la tua prima applicazione web creata in SpringBoot 3 e Thymeleaf";
 	
 	@GetMapping(value = "/")
 	public String getWelcome(Model model) {

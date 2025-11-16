@@ -1,0 +1,14 @@
+intestazione {
+	text-align: center;
+	margin: 0px auto;
+	display: block;
+	color: red;
+	padding-bottom: 1em;
+}
+
+saluti {
+	text-align: center;
+	margin: 0px auto;
+	display: block;
+	color: green;
+}
