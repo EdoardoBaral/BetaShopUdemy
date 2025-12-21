@@ -1,3 +1,27 @@
+server:
+  port: 5050
+
 spring:
-    application:
-        name: betashop
+  output:
+    ansi:
+      enabled: always
+  sql:
+    init:
+      mode: always
+      platform: postgres
+  datasource:
+    password: password
+    url: jdbc:postgresql://localhost:5433/alphashop
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    cache: false

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<div th:insert="~{fragments/head.html :: head}"></div>
+	<body>
+		<div th:insert="~{fragments/navbar.html :: navbar}"></div>
+		<section class="content-main" style="max-width: 760px">
+			<div class="content-header">
+				<h2 class="content-title" th:text="${title}"></h2>
+				<div>
+					<a th:href="@{/articoli}" id="btnAbort" class="btn btn-outline-danger">x Annulla</a>
+				</div>
+			</div>
+			<div class="card mb-4">
+				<div class="card-body">
+					<form action="#" th:action="@{/articoli/savedata}" th:object="${datiart}" method="POST">
+						<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+							<ul>
+								<li th:each="err : ${#fields.errors('*')}" th:text="${err}" class="text-danger"></li>
+							</ul>
+						</div>
+						<div class="row gx-2">
+							<!-- Codice Articolo -->
+							<fieldset class="col-sm-6 mb-3">
+								<label for="codart" class="form-label">Codice Articolo:</label>
+								<input id="codart"
+								       th:field="*{codart}"
+								       type="text"
+								       class="form-control"
+								       placeholder="Codice Articolo"/>
+								<ul th:if="${#fields.hasErrors('codart')}" class="list-unstyled">
+									<li th:each="err : ${#fields.errors('codart')}" th:text="${err}" class="text-danger"></li>
+								</ul>
+							</fieldset>
+
+							<!-- Barcode -->
+							<div class="col-sm-6 mb-3">
+								<label for="ean" class="form-label">Barcode:</label>
+								<select id="itemSelect" name="ean" class="form-select">
+									<option th:each="item : ${datiart.barcode}"
+									        th:value="${item.barcode}"
+									        th:text="${item.barcode}">
+                                    </option>
+								</select>
+							</div>
+						</div>
+
+						<!-- Descrizione -->
+						<fieldset class="mb-4">
+							<label for="descrizione" class="form-label">Descrizione</label>
+							<input id="descrizione"
+							       th:field="*{descrizione}"
+							       type="text"
+							       class="form-control"
+							       placeholder="Descrizione Articolo"/>
+							<ul th:if="${#fields.hasErrors('descrizione')}" class="list-unstyled">
+								<li th:each="err : ${#fields.errors('descrizione')}" th:text="${err}" class="text-danger"></li>
+							</ul>
+						</fieldset>
+
+						<div class="row gx-2">
+							<!-- Unità di misura -->
+							<fieldset class="col-sm-6 mb-3">
+								<label for="um" class="form-label">Unità di Misura:</label>
+								<select id="um" th:field="*{um}" class="form-select">
+									<option value="PZ">Pezzi</option>
+									<option value="LT">Litri</option>
+									<option value="KG">Kilogrammi</option>
+								</select>
+							</fieldset>
+
+							<!-- Iva -->
+							<fieldset class="col-sm-6 mb-3">
+								<label for="idIva" class="form-label">Iva:</label>
+								<select id="idIva" th:field="*{idIva}" class="form-select">
+									<option th:each="item : ${iva}"
+									        th:value="${item.idIva}"
+									        th:text="${item.descrizione}"></option>
+								</select>
+								<ul th:if="${#fields.hasErrors('iva')}" class="list-unstyled">
+									<li th:each="err : ${#fields.errors('iva')}" th:text="${err}" class="text-danger"></li>
+								</ul>
+							</fieldset>
+						</div>
+
+						<div class="mb-4">
+							<div class="row gx-2">
+								<!-- Pezzi per Cartone -->
+								<fieldset class="col-3">
+									<label for="pzcart" class="form-label">PzCart:</label>
+									<input id="pzcart"
+									       th:field="*{pzcart}"
+									       type="number"
+									       class="form-control"/>
+								</fieldset>
+
+								<!-- Peso Netto -->
+								<fieldset class="col-3">
+									<label for="peso" class="form-label">Peso(Kg):</label>
+									<input id="peso"
+									       th:field="*{peso}"
+									       type="text"
+									       class="form-control"/>
+								</fieldset>
+
+								<!-- Prezzo -->
+								<fieldset class="col-4">
+									<label class="form-label">Prezzo:</label>
+									<input id="prezzo"
+									       th:field="*{prezzo}"
+									       placeholder="Prezzo"
+									       type="text"
+									       class="form-control">
+								</fieldset>
+
+								<!-- Valuta -->
+								<div class="col-2">
+									<label class="form-label">Valuta:</label>
+									<select class="form-select">
+										<option value="EUR">EUR</option>
+										<option value="USD">USD</option>
+										<option value="GBP">GBP</option>
+									</select>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="row gx-2">
+							<!-- Categoria -->
+							<fieldset class="col-sm-6 mb-3">
+								<label for="idCat" class="form-label">Categoria:</label>
+								<select id="idCat" th:field="*{idCat}" class="form-select">
+									<option th:each="famiglia : ${famAssort}"
+									        th:value="${famiglia.id}"
+									        th:text="${famiglia.descrizione}">
+                                    </option>
+								</select>
+							</fieldset>
+
+							<!-- Stato Articolo -->
+							<fieldset class="col-sm-6 mb-3">
+								<label for="idStatoArt" class="form-label">Stato:</label>
+								<select id="idStatoArt" th:field="*{idStatoArt}" class="form-select">
+									<option value="1">Attivo</option>
+									<option value="2">Sospeso</option>
+									<option value="3">Eliminato</option>
+								</select>
+							</fieldset>
+						</div>
+
+						<div class="mb-4">
+							<label class="form-label">Immagine:</label>
+							<input type="file" name="file" class="form-control"/>
+						</div>
+
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+						<br>
+						<input type="submit" id="btnAdd" class="btn btn-primary form-buttons">
+					</form>
+				</div>
+			</div>
+		</section>
+		<div th:insert="~{fragments/foot.html :: foot}"></div>
+	</body>
+</html>
