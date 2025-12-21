@@ -12,44 +12,44 @@ import java.util.Set;
 @Setter
 public class ArticoliDto {
 	
-	@Size(min = 5, max = 20, message = "Il codice articolo deve essere compreso fra 5 e 20 caratteri")
-	@NotNull(message = "Non è possibile inserire un valore null nel codice articolo")
+	@Size(min=5, max=20, message="{Size.Articoli.codArt.Validation}")
+	@NotNull(message="{NotNull.Articoli.codArt.Validation}")
 	private String codart;
 	
-	@Size(min = 6, max = 80, message = "La descrizione dell'articolo deve essere compresa fra 6 e 80 caratteri")
+	@Size(min=6, max=80, message="{Size.Articoli.descrizione.Validation}")
 	private String descrizione;
 	
-	@NotBlank(message = "Inserire l'unità di misura dell'articolo")
+	@NotBlank(message="{NotNull.Articoli.um.Validation}")
 	private String um;
 	
 	private String codstat;
 	
-	@Max(value = 99, message = "Il valore massimo dei pezzi per cartone è 99")
-	@Min(value = 1, message = "Il valore minimo dei pezzi per cartone è 1")
-	@NotNull(message = "E' necessario inserire un valore dei pezzi per cartone")
+	@Max(value=100, message="{Max.Articoli.pzCart.Validation}")
+	@Min(value=1, message="{Min.Articoli.pzCart.Validation}")
+	@NotNull(message="{NotNull.Articoli.pzCart.Validation}")
 	private int pzcart;
 	
-	@Max(value = 999, message = "Il valore massimo del peso è 999")
-	@DecimalMin(value = "0.01", message = "Il valore minimo del peso è 0.01")
-	@NotNull(message = "E' necessario inserire il valore del peso dell'articolo")
+	@Max(value=999, message="{Max.Articoli.pesoNetto.Validation")
+	@DecimalMin(value="0.01", message="{Min.Articoli.pesoNetto.Validation}")
+	@NotNull(message="{NotNull.Articoli.pesoNetto.Validation}")
 	private double peso;
 	
 	private String status;
 	private Date data;
 	
-	@Max(value = 1000, message = "Il valore massimo del prezzo è 1000")
-	@DecimalMin(value = "0.01", message = "Il valore minimo del prezzo è 0.01")
-	@NotNull(message = "E' necessario inserire il valore del prezzo dell'articolo")
+	@Max(value=1000, message="{Max.Articoli.prezzo.Validation}")
+	@DecimalMin(value="0.01", message="{DecimalMin.Articoli.prezzo.Validation}")
+	@NotNull(message="{NotNull.Articoli.prezzo.Validation}")
 	private double prezzo = 0;
 	
-	@NotNull(message = "E'necessario selezionare l'iva dell'articolo")
+	@NotNull(message="{NotNull.Articoli.idIva.Validation}")
 	private int idIva;
 	
-	@NotNull(message = "E'necessario selezionare la categoria dell'articolo")
+	@NotNull(message="{NotNull.Articoli.idCat.Validation}")
 	private int idCat;
 	
-	@NotNull(message = "E' necessario selezionare lo stato dell'articolo")
-	@NotBlank(message = "E' necessario selezionare lo stato dell'articolo")
+	@NotNull(message="{NotNull.Articoli.idStatoArt.Validation}")
+	@NotBlank(message="{NotNull.Articoli.idStatoArt.Validation}")
 	private String idStatoArt;
 	
 	private Set<BarcodeDto> barcode = new HashSet<>();
