@@ -21,7 +21,7 @@
 						<div class="row gx-2">
 							<!-- Codice Articolo -->
 							<fieldset class="col-sm-6 mb-3">
-								<label for="codart" class="form-label">Codice Articolo:</label>
+								<label for="codart" class="form-label" th:text="#{form.gestart.codArt.label}">Codice Articolo:</label>
 								<input id="codart"
 								       th:field="*{codart}"
 								       type="text"
@@ -46,7 +46,7 @@
 
 						<!-- Descrizione -->
 						<fieldset class="mb-4">
-							<label for="descrizione" class="form-label">Descrizione</label>
+							<label for="descrizione" class="form-label" th:text="#{form.gestart.descrizione.label}">Descrizione</label>
 							<input id="descrizione"
 							       th:field="*{descrizione}"
 							       type="text"
@@ -60,7 +60,7 @@
 						<div class="row gx-2">
 							<!-- Unità di misura -->
 							<fieldset class="col-sm-6 mb-3">
-								<label for="um" class="form-label">Unità di Misura:</label>
+								<label for="um" class="form-label" th:text="#{form.gestart.um.label}">Unità di Misura:</label>
 								<select id="um" th:field="*{um}" class="form-select">
 									<option value="PZ">Pezzi</option>
 									<option value="LT">Litri</option>
@@ -70,7 +70,7 @@
 
 							<!-- Iva -->
 							<fieldset class="col-sm-6 mb-3">
-								<label for="idIva" class="form-label">Iva:</label>
+								<label for="idIva" class="form-label" th:text="#{form.gestart.iva.label}">Iva:</label>
 								<select id="idIva" th:field="*{idIva}" class="form-select">
 									<option th:each="item : ${iva}"
 									        th:value="${item.idIva}"
@@ -86,7 +86,7 @@
 							<div class="row gx-2">
 								<!-- Pezzi per Cartone -->
 								<fieldset class="col-3">
-									<label for="pzcart" class="form-label">PzCart:</label>
+									<label for="pzcart" class="form-label" th:text="#{form.gestart.pzCart.label}">PzCart:</label>
 									<input id="pzcart"
 									       th:field="*{pzcart}"
 									       type="number"
@@ -95,7 +95,7 @@
 
 								<!-- Peso Netto -->
 								<fieldset class="col-3">
-									<label for="peso" class="form-label">Peso(Kg):</label>
+									<label for="peso" class="form-label" th:text="#{form.gestart.pesoNetto.label}">Peso(Kg):</label>
 									<input id="peso"
 									       th:field="*{peso}"
 									       type="text"
@@ -104,7 +104,7 @@
 
 								<!-- Prezzo -->
 								<fieldset class="col-4">
-									<label class="form-label">Prezzo:</label>
+									<label class="form-label" th:text="#{form.gestart.prezzo.label}">Prezzo:</label>
 									<input id="prezzo"
 									       th:field="*{prezzo}"
 									       placeholder="Prezzo"
@@ -114,7 +114,7 @@
 
 								<!-- Valuta -->
 								<div class="col-2">
-									<label class="form-label">Valuta:</label>
+									<label class="form-label" th:text="#{form.gestart.valuta.label}">Valuta:</label>
 									<select class="form-select">
 										<option value="EUR">EUR</option>
 										<option value="USD">USD</option>
@@ -128,7 +128,7 @@
 						<div class="row gx-2">
 							<!-- Categoria -->
 							<fieldset class="col-sm-6 mb-3">
-								<label for="idCat" class="form-label">Categoria:</label>
+								<label for="idCat" class="form-label" th:text="#{form.gestart.famAssort.label}">Categoria:</label>
 								<select id="idCat" th:field="*{idCat}" class="form-select">
 									<option th:each="famiglia : ${famAssort}"
 									        th:value="${famiglia.id}"
@@ -139,7 +139,7 @@
 
 							<!-- Stato Articolo -->
 							<fieldset class="col-sm-6 mb-3">
-								<label for="idStatoArt" class="form-label">Stato:</label>
+								<label for="idStatoArt" class="form-label" th:text="#{form.gestart.idStatoArt.label}">Stato:</label>
 								<select id="idStatoArt" th:field="*{idStatoArt}" class="form-select">
 									<option value="1">Attivo</option>
 									<option value="2">Sospeso</option>
@@ -149,7 +149,7 @@
 						</div>
 
 						<div class="mb-4">
-							<label class="form-label">Immagine:</label>
+							<label class="form-label" th:text="#{form.gestart.immagine.label}">Immagine:</label>
 							<input type="file" name="file" class="form-control"/>
 						</div>
 
