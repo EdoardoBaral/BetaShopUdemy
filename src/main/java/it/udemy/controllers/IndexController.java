@@ -2,9 +2,9 @@ package it.udemy.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class IndexController {
@@ -20,9 +20,11 @@ public class IndexController {
 	}
 	
 	@GetMapping(value="index")
-	public String getWelcome2(Model model, @RequestParam("name") String name) {
+	public String getWelcome2(Model model,
+							  @CookieValue(value = "user-id") String name) {
 		model.addAttribute("intestazione", String.format("Benvenuto %s nella index page della webapp BetaShopUdemy", name));
 		model.addAttribute("saluti", SALUTI);
+		model.addAttribute("userName", name);
 		
 		return "index";
 	}
