@@ -3,6 +3,7 @@ package it.udemy.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -19,7 +20,15 @@ public class IndexController {
 	}
 	
 	@GetMapping(value="index")
-	public String getWelcome2(Model model,  @RequestParam("name") String name) {
+	public String getWelcome2(Model model, @RequestParam("name") String name) {
+		model.addAttribute("intestazione", String.format("Benvenuto %s nella index page della webapp BetaShopUdemy", name));
+		model.addAttribute("saluti", SALUTI);
+		
+		return "index";
+	}
+	
+	@GetMapping(value = "index/{name}")
+	public String getWelcome3(Model model, @PathVariable("name") String name) {
 		model.addAttribute("intestazione", String.format("Benvenuto %s nella index page della webapp BetaShopUdemy", name));
 		model.addAttribute("saluti", SALUTI);
 		
